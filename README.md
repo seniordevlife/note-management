@@ -1,10 +1,41 @@
-
 ## 🛠 Tech Stack
 
 - **Frontend:** React, Tailwind CSS  
 - **Framework:** NestJS  
 - **Testing:** Jest
 
+---
+
+## 🚀 Deployment & CI/CD
+
+### 🔁 Continuous Integration - CircleCI
+
+This project uses [CircleCI](https://circleci.com/) for CI/CD:
+
+- Automatically installs dependencies
+- Builds the app
+- Runs tests (`npm run test`)
+- Deploys to Vercel on successful test pass
+
+The config is located at `.circleci/config.yml`.  
+CircleCI workflow includes:
+- `install-deps`
+- `build`
+- `test`
+- `deploy` via [Vercel deploy hook](https://vercel.com/docs/projects/git#deploy-hooks)
+
+### 🌐 Deployment - Vercel
+
+The app is auto-deployed to Vercel using a deploy hook triggered by CircleCI after successful tests.
+
+🔗 **Live URL**: [note-management.vercel.app](https://note-management-nwk0jomuv-vincents-projects-26c3f3b1.vercel.app/)
+
+---
+
+## 🧪 Run Test 
+
+```bash 
+npm run test
 
 ## Getting Started
 
