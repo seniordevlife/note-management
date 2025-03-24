@@ -6,7 +6,7 @@ executors:
       - image: cimg/node:20.9.0
 
 jobs:
-  build:
+  install-deps:
     executor: node-executor
     steps:
       - checkout
@@ -18,9 +18,44 @@ jobs:
           paths:
             - node_modules
           key: node-modules-{{ checksum "package-lock.json" }}
+
+  build:
+    executor: node-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-modules-{{ checksum "package-lock.json" }}
       - run: npm run build
 
+  test:
+    executor: node-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-modules-{{ checksum "package-lock.json" }}
+      - run: npm test
+
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: Trigger Vercel Deploy
+          command: |
+            curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_bp43RXq3aUy4QWo4ZICuEbOXx9Tj/FK6G9vnA0X
+
 workflows:
-  build-deploy:
+  build-test-deploy:
     jobs:
-      - build
+      - install-deps
+      - build:
+          requires:
+            - install-deps
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
