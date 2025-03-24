@@ -1,3 +1,11 @@
+
+## 🛠 Tech Stack
+
+- **Frontend:** React, Tailwind CSS  
+- **Framework:** NestJS  
+- **Testing:** Jest
+
+
 ## Getting Started
 
 First, run the development server:

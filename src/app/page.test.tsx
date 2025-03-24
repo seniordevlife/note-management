@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { fetchNotes, createNote } from '../utils/api';
+import { fetchNotes } from '../utils/api';
 import { Note } from '../../type';
 import { useRouter } from 'next/navigation';
 import '@testing-library/jest-dom';

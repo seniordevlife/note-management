@@ -10,7 +10,7 @@ jest.mock('react', () => {
   const original = jest.requireActual('react');
   return {
     ...original,
-    use: (promise: any) => ({ id: '123' }),
+    use: () => ({ id: '123' }),
   };
 });
 
